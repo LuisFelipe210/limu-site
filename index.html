@@ -105,10 +105,10 @@ nav .btn.primary{background:var(--ink);color:var(--bg)}
 .hero .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px 40px;flex-wrap:wrap;position:relative;z-index:2}
 .hero .say{font-size:clamp(1rem, .7rem + 1.1svh, 1.22rem);line-height:1.4;max-width:34ch}
 /* o convite para brincar: uma pílula escura, para ninguém passar sem ver */
-.hero .try{font-size:.95rem;font-weight:600;display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;background:#231d00;color:#fffbe6;padding:9px 12px 9px 18px;border-radius:999px;box-shadow:0 12px 26px -14px #000a;max-width:100%}
-@media (max-width:820px){.hero .try{border-radius:16px;padding:9px 12px 9px 14px;font-size:.9rem}}
-.hero .try .ks{display:inline-flex;gap:4px;white-space:nowrap}
-.hero .try kbd{background:#f6d32d;border-color:#f6d32d;box-shadow:0 2px 0 #9d8410;color:#231d00;font-size:.85em;padding:2px 8px}
+.try{font-size:.95rem;font-weight:600;display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;background:#231d00;color:#fffbe6;padding:9px 12px 9px 18px;border-radius:999px;box-shadow:0 12px 26px -14px #000a;max-width:100%}
+@media (max-width:820px){.try{border-radius:16px;padding:9px 12px 9px 14px;font-size:.9rem}}
+.try .ks{display:inline-flex;gap:4px;white-space:nowrap}
+.try kbd{background:#f6d32d;border-color:#f6d32d;box-shadow:0 2px 0 #9d8410;color:#231d00;font-size:.85em;padding:2px 8px}
 /* arquivos soltos no pôster: arraste um e, sem soltar, aperte a tecla; a roda abre no cursor e soltar numa fatia cria o arquivo novo */
 .hf *{-webkit-user-drag:none}
 .hf{position:absolute;left:0;top:0;z-index:3;width:88px;display:grid;justify-items:center;gap:6px;padding:4px;border:0;background:none;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--r,0deg));transition:transform .45s var(--ease)}
@@ -165,10 +165,10 @@ nav .btn.primary{background:var(--ink);color:var(--bg)}
 .hero .btn:hover{box-shadow:0 14px 28px -16px #00000066}
 /* as três teclas lado a lado: a da roda que está aberta afunda e fica escura */
 .keys{display:flex;flex-wrap:wrap;gap:clamp(10px,2vw,28px)}
-.keys button{font:inherit;color:inherit;background:transparent;border:0;padding:0;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:10px;align-items:center;cursor:pointer;text-align:left}
+.keys .kb{text-decoration:none;font:inherit;color:inherit;background:transparent;border:0;padding:0;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:10px;align-items:center;cursor:pointer;text-align:left}
 .keys kbd{grid-row:span 2;width:clamp(42px,6svh,52px);height:clamp(42px,6svh,52px);display:grid;place-items:center;padding:0;font-size:1.25rem;border-radius:12px;background:#fffbe6;border:1px solid #c9a91a;box-shadow:0 4px 0 #c9a91a;color:#231d00;transition:transform .12s, box-shadow .12s, background .25s, color .25s}
-.keys button:hover kbd{transform:translateY(-1px)}
-.keys button[aria-pressed="true"] kbd{background:#231d00;border-color:#231d00;color:#f6d32d;box-shadow:0 4px 0 #000}
+.keys .kb:hover kbd{transform:translateY(-1px)}
+.keys .kb[aria-pressed="true"] kbd{background:#231d00;border-color:#231d00;color:#f6d32d;box-shadow:0 4px 0 #000}
 .keys kbd.press{transform:translateY(4px)!important;box-shadow:0 0 0 #000!important}
 .keys b{font-weight:700;font-size:.98rem;align-self:end;line-height:1.2}
 .keys small{font-size:.78rem;opacity:.7;align-self:start;line-height:1.3}
@@ -177,15 +177,25 @@ nav .btn.primary{background:var(--ink);color:var(--bg)}
   .hero{padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
   .hero-grid{display:flex;flex-direction:column;gap:clamp(10px,1.8svh,18px)}
   .hero .word{order:-1}
-  .hero .bottom{margin-top:auto;padding-top:112px}
+  .hero .bottom{margin-top:auto;padding-top:24px}
   .hero .say{font-size:1rem}
   .hero h1{font-size:46vw}
-  .keys{display:flex;flex-wrap:nowrap;gap:clamp(10px,4vw,20px);padding-right:92px}
+  .keys{display:flex;flex-wrap:nowrap;gap:clamp(10px,4vw,20px)}
+  .play .keys{padding-right:92px}
   .keys b{font-size:.9rem}
-  .keys button{grid-template-columns:1fr;justify-items:start;row-gap:6px}
+  .keys .kb{grid-template-columns:1fr;justify-items:start;row-gap:6px}
   .keys kbd{grid-row:auto}
   .keys small{display:none}
 }
+
+/* o teste: um quadro amarelo como o pôster, com os arquivos soltos, as três teclas e a lixeira */
+#teste{padding-bottom:0}
+.play{position:relative;overflow:hidden;margin-top:clamp(28px,4vw,44px);height:clamp(480px,66svh,620px);border-radius:28px;background:#f6d32d;color:#231d00;box-shadow:0 30px 60px -40px #3a250a99}
+.play .try{position:absolute;left:clamp(16px,2.4vw,28px);top:clamp(16px,2.4vw,28px);z-index:2;margin:0}
+.play .keys{position:absolute;left:clamp(16px,2.4vw,28px);right:clamp(16px,2.4vw,28px);bottom:clamp(16px,2.4vw,28px);z-index:2}
+.play .htoast{bottom:auto;top:clamp(70px,9vw,96px)}
+a.try{color:#fffbe6;text-decoration:none}
+a.try:hover{box-shadow:0 16px 30px -14px #000c}
 
 /* formatos: faixa escura no pé do pôster */
 .marquee{background:#231d00;color:#f6d32d;overflow:hidden;padding-block:clamp(10px,1.8svh,16px);position:relative}
@@ -474,26 +484,41 @@ footer .big span{display:inline-block}
 <div class="hero" id="hero"><div class="hero-in g"><div class="wrap hero-grid">
   <div class="top">
     <p class="say" style="--i:0">Arraste um arquivo e aperte uma tecla: a roda aparece no cursor. Tudo no seu computador, sem mandar nada para a internet.</p>
-    <p class="try" style="--i:1" aria-hidden="true">Experimente: segure um arquivo e aperte <span class="ks"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>⌃</kbd></span></p>
+    <a class="try" href="#teste" style="--i:1">Teste aqui mesmo, sem baixar nada ↓</a>
   </div>
   <div class="word" id="word">
   <h1 aria-label="Limu"><span class="ch" style="--i:0" aria-hidden="true">L</span><span class="ch" style="--i:1" aria-hidden="true">i</span><span class="ch" style="--i:2" aria-hidden="true">m</span><span class="ch" style="--i:3" aria-hidden="true">u</span></h1>
   </div>
   <div class="bottom">
-    <div class="keys" id="legend" role="group" aria-label="As três rodas" style="--i:2">
-      <button type="button" data-k="0" aria-pressed="true"><kbd>⇧</kbd><b>Converter</b><small>Shift no Windows</small></button>
-      <button type="button" data-k="1" aria-pressed="false"><kbd>⌘</kbd><b>Ferramentas</b><small>Ctrl no Windows</small></button>
-      <button type="button" data-k="2" aria-pressed="false"><kbd>⌃</kbd><b>Ações</b><small>Alt no Windows</small></button>
+    <div class="keys" aria-label="As três rodas" style="--i:2">
+      <a class="kb" href="#teste"><kbd>⇧</kbd><b>Converter</b><small>Shift no Windows</small></a>
+      <a class="kb" href="#teste"><kbd>⌘</kbd><b>Ferramentas</b><small>Ctrl no Windows</small></a>
+      <a class="kb" href="#teste"><kbd>⌃</kbd><b>Ações</b><small>Alt no Windows</small></a>
     </div>
     <a class="btn" href="#baixar" style="--i:3">Baixar para Mac e Windows <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6 12l6 6 6-6"/></svg></a>
   </div>
 </div></div>
-<div id="hfiles" aria-hidden="true"></div>
-<button class="htrash" id="htrash" type="button" aria-label="Apagar os arquivos criados"><span class="bin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="lid"><path d="M3 6h18"/><path d="M9 6V4h6v2"/></g><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/><path d="M10 11v6M14 11v6"/></svg><b hidden></b></span><span>Lixeira</span></button>
-<div class="lw" id="lw" aria-hidden="true"><svg viewBox="-100 -100 200 200"><defs><linearGradient id="lwg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#f4bd12"/></linearGradient></defs><g class="wds"></g><path class="hl" d=""/></svg><div class="labels"></div><div class="hub"></div></div>
-<div class="htoast" id="htoast" aria-live="polite"><i><svg viewBox="0 0 24 24" fill="none" stroke="#231d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></i><span></span></div>
 <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 </div>
+
+<section id="teste" class="g"><div class="wrap">
+  <div class="head">
+    <h2 class="rv">Teste aqui.</h2>
+    <p class="lede rv" style="--i:1">Pegue um arquivo e, sem soltar, aperte uma tecla: a roda abre no cursor, como no app. Solte numa fatia e o arquivo novo aparece ao lado. Os criados vão para a lixeira.</p>
+  </div>
+  <div class="play rv" id="play" style="--i:2">
+    <p class="try" aria-hidden="true">Segure um arquivo e aperte <span class="ks"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>⌃</kbd></span></p>
+    <div class="keys" id="legend" role="group" aria-label="As três rodas">
+      <button class="kb" type="button" data-k="0" aria-pressed="true"><kbd>⇧</kbd><b>Converter</b><small>Shift no Windows</small></button>
+      <button class="kb" type="button" data-k="1" aria-pressed="false"><kbd>⌘</kbd><b>Ferramentas</b><small>Ctrl no Windows</small></button>
+      <button class="kb" type="button" data-k="2" aria-pressed="false"><kbd>⌃</kbd><b>Ações</b><small>Alt no Windows</small></button>
+    </div>
+    <div id="hfiles" aria-hidden="true"></div>
+    <button class="htrash" id="htrash" type="button" aria-label="Apagar os arquivos criados"><span class="bin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="lid"><path d="M3 6h18"/><path d="M9 6V4h6v2"/></g><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/><path d="M10 11v6M14 11v6"/></svg><b hidden></b></span><span>Lixeira</span></button>
+    <div class="lw" id="lw" aria-hidden="true"><svg viewBox="-100 -100 200 200"><defs><linearGradient id="lwg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#f4bd12"/></linearGradient></defs><g class="wds"></g><path class="hl" d=""/></svg><div class="labels"></div><div class="hub"></div></div>
+    <div class="htoast" id="htoast" aria-live="polite"><i><svg viewBox="0 0 24 24" fill="none" stroke="#231d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></i><span></span></div>
+  </div>
+</div></section>
 
 <section id="como" class="flow"><div class="flow-pin"><div class="wrap g flow-grid">
   <div class="flow-copy">
@@ -898,16 +923,15 @@ const TOUR = {
   btns.forEach((x, i) => { x.addEventListener("click", () => pick(i)); x.addEventListener("mouseenter", () => pick(i)); });
 
   // com um arquivo na mão, apertar a tecla abre a roda no cursor, como no app
-  const hero = document.getElementById("hero");
-  const top = hero.querySelector(".top"), word = hero.querySelector("h1"), bottom = hero.querySelector(".bottom");
+  const play = document.getElementById("play");
   const mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
   const KEY = mac ? {Shift:0, Meta:1, Control:2} : {Shift:0, Control:1, Alt:2};
   const touch = matchMedia("(pointer:coarse)").matches;
-  hero.querySelector(".try").innerHTML = touch ? "Experimente: arraste um arquivo até a roda"
+  play.querySelector(".try").innerHTML = touch ? "Experimente: arraste um arquivo até a roda"
     : `Experimente: segure um arquivo e aperte <span class="ks">${mac ? "<kbd>⇧</kbd><kbd>⌘</kbd><kbd>⌃</kbd>" : "<kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>Alt</kbd>"}</span>`;
   let ptr = null;
-  hero.addEventListener("pointermove", e => { if (e.pointerType === "mouse") { const r = hero.getBoundingClientRect(); ptr = [e.clientX - r.left, e.clientY - r.top]; } });
-  hero.addEventListener("pointerleave", () => { ptr = null; });
+  play.addEventListener("pointermove", e => { if (e.pointerType === "mouse") { const r = play.getBoundingClientRect(); ptr = [e.clientX - r.left, e.clientY - r.top]; } });
+  play.addEventListener("pointerleave", () => { ptr = null; });
   // arquivos soltos no pôster, com as fatias que cada um mostra no app
   const FILES = [
     {name:"foto.heic", f:1, conv:["PNG","JPG","WebP","AVIF","GIF","PDF"], tools:["Editar","Tarjar","Sem fundo","Comprimir","50%","Girar","Texto"]},
@@ -957,25 +981,26 @@ const TOUR = {
     el._file = file; box.append(el); return el;
   };
   const pos = (el, x, y, r) => { el._x = x; el._y = y; el.style.setProperty("--x", x + "px"); el.style.setProperty("--y", y + "px"); if (r !== undefined) el.style.setProperty("--r", r + "deg"); };
-  const fit = (x, y) => { const r = hero.getBoundingClientRect(); return [Math.max(0, Math.min(r.width - 92, x)), Math.max(70, Math.min(r.height - 150, y))]; };
+  const fit = (x, y) => { const r = play.getBoundingClientRect(); const tr = play.querySelector(".try"); // (abaixo do convite, para não cobrir a instrução)
+    return [Math.max(0, Math.min(r.width - 92, x)), Math.max(tr.offsetTop + tr.offsetHeight + 4, Math.min(r.height - 110, y))]; };
   const originals = FILES.map(f => mk(f, f.name.split(".").pop())), trash = document.getElementById("htrash"), badge = trash.querySelector("b");
   const keys = document.getElementById("legend");
   originals[3].classList.add("xm"); // a música fica só no computador; no celular não cabe na fileira
   const layout = () => {
-    const h = hero.getBoundingClientRect(), t = top.getBoundingClientRect().bottom - h.top, w = word.getBoundingClientRect().top - h.top, W = h.width;
-    const desk = innerWidth > 820, base = t + Math.max(10, (w - t - 96) / 2), right = top.getBoundingClientRect().right - h.left;
-    // no celular: os três arquivos numa fileira e a lixeira no canto direito da linha das teclas
+    const h = play.getBoundingClientRect(), W = h.width, desk = innerWidth > 820;
+    const t = play.querySelector(".try").getBoundingClientRect().bottom - h.top;
+    // os arquivos numa fileira entre o convite e as teclas; a lixeira à direita (no celular, na linha das teclas)
     const kb = keys.querySelector("kbd").getBoundingClientRect(), kt = kb.top - h.top, cw = originals[0].offsetWidth || 80, gap = (W - 40 - 3 * cw) / 2;
-    const row = t + Math.max(8, (kt - t - 92) / 2), slot = i => 20 + i * (cw + gap);
-    const spots = desk ? originals.map((_, i) => [W * [.06, .23, .4, .57][i], base + [18, -6, 30, 2][i]])
+    const row = t + Math.max(12, (kt - t - 92) / 2), slot = i => 20 + i * (cw + gap);
+    const spots = desk ? originals.map((_, i) => [W * [.07, .25, .43, .61][i], row + [10, -14, 22, -4][i]])
       : originals.map((_, i) => [slot(Math.min(i, 2)), row]);
-    trash._x = desk ? right - 88 : W - 20 - trash.offsetWidth + 4; trash._y = desk ? base + 10 : kt + kb.height / 2 - trash.querySelector(".bin").offsetHeight / 2 - 4;
+    trash._x = desk ? W - W * .07 - trash.offsetWidth : W - 20 - trash.offsetWidth + 4; trash._y = desk ? row : kt + kb.height / 2 - trash.querySelector(".bin").offsetHeight / 2 - 4;
     trash.style.setProperty("--x", trash._x + "px"); trash.style.setProperty("--y", trash._y + "px");
     originals.forEach((el, i) => { el._home = spots[i]; });
     if (moved) return [...box.children].forEach(el => pos(el, ...fit(el._x, el._y)));
     originals.forEach((el, i) => pos(el, ...spots[i], desk ? [-6, 4, -3, 7][i] : 0));
   };
-  new ResizeObserver(layout).observe(hero);
+  new ResizeObserver(layout).observe(play);
   document.fonts && document.fonts.ready.then(layout);
 
   // a roda viva: monta as fatias e acende a que está sob o cursor
@@ -984,7 +1009,7 @@ const TOUR = {
   const TITLE = ["Converter", "Ferramentas", "Ações"];
   const openLive = (type, x, y) => {
     const f = drag.el._file, items = type === 0 ? f.conv : type === 1 ? f.tools : Object.keys(ACTS);
-    const h = hero.getBoundingClientRect(), R = Math.round(Math.max(118, Math.min(178, Math.min(h.width, h.height) * .21)));
+    const h = play.getBoundingClientRect(), R = Math.round(Math.max(118, Math.min(178, Math.min(h.width, h.height) * .21)));
     const cx = Math.max(R + 6, Math.min(h.width - R - 6, x)), cy = Math.max(R + 6, Math.min(h.height - R - 6, y)), N = items.length, step = Math.PI * 2 / N;
     live = {type, items, cx, cy, R, step, idx:-1};
     wds.innerHTML = items.map((_, i) => `<path class="wd" d="${arc((i - .5) * step - Math.PI / 2, (i + .5) * step - Math.PI / 2, 31, 98)}"/>`).join("");
@@ -1032,13 +1057,13 @@ const TOUR = {
     const el = e.target.closest(".hf"); if (!el || e.button > 0) return;
     // vai para o topo da pilha antes de capturar o ponteiro: mover o elemento depois soltaria a captura
     e.preventDefault(); box.append(el); el.setPointerCapture(e.pointerId);
-    const r = hero.getBoundingClientRect();
+    const r = play.getBoundingClientRect();
     drag = {el, id:e.pointerId, ox:e.clientX - r.left - el._x, oy:e.clientY - r.top - el._y, sx:e.clientX, sy:e.clientY, touch:e.pointerType !== "mouse", go:false};
     el.classList.add("drag"); manual = true;
   });
   box.addEventListener("pointermove", e => {
     if (!drag || e.pointerId !== drag.id) return;
-    const r = hero.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const r = play.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
     if (!drag.go && Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) > 5) {
       drag.go = moved = true;
       // no toque não há tecla: a roda da tecla acesa abre onde o arraste começou
@@ -1061,12 +1086,13 @@ const TOUR = {
   };
   box.addEventListener("dragstart", e => e.preventDefault());
   box.addEventListener("pointerup", drop); box.addEventListener("pointercancel", drop);
-  hero.addEventListener("contextmenu", e => { if (drag) e.preventDefault(); });
+  play.addEventListener("contextmenu", e => { if (drag) e.preventDefault(); });
 
   addEventListener("keydown", e => {
     if (e.key === "Escape" && live) { live.idx = -1; return closeLive(); }
     const i = KEY[e.key];
-    if (i === undefined || e.repeat || hero.getBoundingClientRect().bottom < 80) return;
+    const pr = play.getBoundingClientRect();
+    if (i === undefined || e.repeat || pr.bottom < 80 || pr.top > innerHeight - 80) return;
     manual = true; show(i, true);
     // a roda só abre com um arquivo na mão; sem arquivo a tecla acende e o aviso lembra de pegar um
     if (drag) { e.preventDefault(); if (ptr) { openLive(i, ...ptr); hover(...ptr); } return; }
